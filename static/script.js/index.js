@@ -5,22 +5,21 @@ function random(min, max) {
     return n
 }
 
-function cambioColore() {
-    inizio.innerHTML="CLICCA ORA!"
+function cambioColore(){
     sinistra.classList.replace("rosso","verde")
     centro.classList.replace("rosso","verde")
     destra.classList.replace("rosso","verde")
+    suono.play
     pausa=true
     startTimer=Date.now();
 }
 
-function restart() {
+function restart(){
     sinistra.classList.replace("verde","rosso")
     centro.classList.replace("verde","rosso")
     destra.classList.replace("verde","rosso")
     pausa=false
     inizio.disabled=false
-    inizio.innerHTML="INIZIA IL TEST"
 }
 
 let inizio=document.querySelector("#inizio")
@@ -32,9 +31,10 @@ let tempo=document.querySelector("#tempo")
 let pausa=false
 let startTimer
 let tempoMigliore=Infinity
+let suono = new Audio('static/sounds/beep-125033.mp3')
 
 inizio.addEventListener("click",function(){
-    if (!pausa){
+    if(!pausa){
        
         restart()
         let delay=random(1000, 3000)
@@ -46,7 +46,7 @@ inizio.addEventListener("click",function(){
         if (tempoDiReazione<tempoMigliore){
             tempoMigliore=tempoDiReazione
             tempo.innerHTML="Record personale: "+tempoMigliore+" secondi"
-        } else {
+        }else{
             tempo.innerHTML="Record personale: "+tempoMigliore+" secondi"
         }
         inizio.disabled=true
